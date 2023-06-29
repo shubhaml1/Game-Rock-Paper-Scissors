@@ -1,0 +1,219 @@
+<html>
+    <head>
+        <title>Rock Paper Scissors</title>
+        <script src="https://use.fontawesome.com/d2b46f845b.js"></script>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Agdasima:wght@400;700&family=Montserrat:wght@744;800&family=Ubuntu&display=swap" rel="stylesheet">
+        <style>
+            body {
+                margin:0;
+                padding:0;
+            }
+            .flex-container {
+                display:flex;
+                justify-content: center;
+                justify-items: center;
+                width:100%;
+                align-items: center;
+            }
+            .icon:hover {
+                    font-size: 60px !important;
+                    color: #f1c40f;
+                    border-radius: 100px;
+                    border: 6px solid #f1c40f;
+                    cursor:pointer ;
+                }
+            .icon-option {
+                font-size: 60px!important;
+                color: red;
+            }
+            .icon {
+                border-radius: 100px;
+                padding: 20px;
+                margin: 0px 0.7rem;
+                border: 6px solid rgb(28, 107, 120);
+            }
+            .heading-design {
+                font-family: 'ubuntu', sans-serif;
+                font-size: 3.2rem;
+                color: rgb(28, 107, 120);
+                margin:  1.5rem 0;
+            }
+            .text-result {
+                font-family: 'ubuntu', sans-serif;
+                font-size: 30px;
+                color: rgb(28, 107, 120);
+            }  
+            .text-result-final {
+                font-family: 'ubuntu', sans-serif;
+                font-size: 30px;
+                color: rgb(0, 86, 139);
+            }
+            .text-moves-status {
+                font-family: 'ubuntu', sans-serif;
+                font-weight: 700;
+                font-size: 25px;
+                color: rgb(45, 95, 100);
+                margin: 1rem 0;
+            }
+            .game1 {
+                
+                background: rgb(211, 240, 238);
+            }
+            .reset-button {
+                color: #000;
+                border-radius: 2rem;
+                padding: 1.2rem;
+                background-color: #fff;
+                cursor: pointer;
+                font-weight: 700;
+                font-size: 1.1rem;
+                margin-bottom: 2.5rem;
+                border: 3px solid rgb(28, 107, 120);
+                &:hover {
+                    border:3px solid #f1c40f;
+;
+                }
+            }
+        </style>
+       
+    </head>
+    <body>
+        <section class="game1">
+            <div class="flex-container">
+               <h1 class="heading-design">Rock Paper Scissors</h1> 
+            </div>
+            <div class="flex-container game-icons">
+                <button class="icon" onclick="playGame('rock');" ><i data-option="rock"  class="icon-option fa fa-hand-rock-o" aria-hidden="true"></i></button>
+                <button class="icon" onclick="playGame('paper');"><i data-option="paper" class="icon-option fa fa-hand-paper-o" aria-hidden="true"></i></button>
+                <button class="icon" onclick="playGame('scissors');"><i data-option="scissors" class="icon-option fa fa-hand-scissors-o" aria-hidden="true"></i></button>
+            </div>  
+            <div class="flex-container">
+                <h2 class="js-result text-result"></h2>
+            </div> 
+            <div class="flex-container">
+                <h2 class="js-result-final text-result-final">First 5 scorer will win.</h2>
+            </div>    
+            <div class="flex-container">
+                <p class="js-moves text-moves-status"></p>
+            </div>
+            <div class="flex-container">
+                <p class="js-status text-moves-status"></p>
+            </div>
+           
+            <div class="flex-container">
+                <button class="reset-button" onclick="resetScores();">Restart Game</button>
+            </div>
+            
+            <script>
+        /* Store and update the score */
+                const score = JSON.parse(localStorage.getItem('savedScore')) ||
+                {
+                    wins: 0,
+                    losses: 0,
+                    ties: 0
+                };
+
+                /* Function for game */
+                function playGame(playerMove) {
+                    let pMove = '';
+                    let result = '';
+                    let computerMoveData = pickComputerMove();
+                    let computerMove = computerMoveData[0];
+                    let compMove = computerMoveData[1];
+                    //to store html of computer move
+                   
+                    if (playerMove === 'scissors') {
+                        pMove += '<i data-option="scissors" class="icon-option fa fa-hand-scissors-o" aria-hidden="true"></i>';
+                        if (computerMove === 'rock') {
+                            result = 'You lose :(';
+                        } else if (computerMove === 'paper') {
+                            result = 'Hurray!! You win!';
+                        } else if (computerMove === 'scissors') {
+                            result = 'Draw';
+                    }
+                    } else if (playerMove === 'paper') {
+                        pMove += '<i data-option="paper" class="icon-option fa fa-hand-paper-o" aria-hidden="true"></i>';
+
+                    if (computerMove === 'rock') {
+                            result = 'Hurray!! You win!';
+                    } else if (computerMove === 'paper') {
+                            result = 'Draw';
+                    } else if (computerMove === 'scissors') {
+                            result = 'You lose :(';
+                    }
+                    } else if (playerMove === 'rock') {
+                        pMove += '<i data-option="rock" class="icon-option fa fa-hand-rock-o" aria-hidden="true"></i>';
+
+                    if (computerMove === 'rock') {
+                            result = 'Draw';
+                    } else if (computerMove === 'paper') {
+                            result = 'You lose :(';
+                    } else if (computerMove === 'scissors') {
+                            result = 'Hurray!! You win!';
+                    }
+                    }
+                    // Update the score object based on the match
+                    if (result === 'Hurray!! You win!')  {
+                    score.wins += 1;
+                        if(score.wins === 5) {
+                            document.querySelector('.js-result-final').innerHTML = 'You Win!! Game Over';
+                            // document.querySelector('.reset-button').innerHTML = 'Restart Game';
+                        }
+                    }    
+                    else if (result === 'You lose :(') {
+                        score.losses += 1;
+                        if(score.losses === 5) {
+                            document.querySelector('.js-result-final').innerHTML = 'You Lost Bro!! Game Over';
+                            // document.querySelector('.reset-button').innerHTML = 'Restart Game';
+                        }
+                    } 
+                    else score.ties += 1;
+                    localStorage.setItem('savedScore', JSON.stringify(score));
+                    document.querySelector('.js-result').innerHTML = result;
+
+                    // document.querySelector('.js-moves').innerHTML = `You picked: ${playerMove} Computer picked: ${computerMove}.`;
+                    document.querySelector('.js-moves').innerHTML = `You picked: ${ pMove} Computer picked: ${ compMove}`;
+                    document.querySelector('.js-status').innerHTML = `Wins: ${score.wins}, Losses: ${score.losses}, Ties: ${score.ties} .`;
+
+
+                
+                // localStorage.setItem('savedScore', 'score');
+
+                // Pop-up the result of the match
+                //alert(`You picked ${playerMove}. Computer picked ${computerMove}. ${result}\n\nWins: ${score.wins}, Losses: ${score.losses}, Ties: ${score.ties}`);
+            }
+
+                // Function for Computer Move
+            function pickComputerMove() {
+                const randomNumber = Math.floor(Math.random() * 3);
+                    let computerMove = '';
+                    let compMove = '';
+                if (randomNumber === 0) {
+                        computerMove = 'rock';
+                        compMove += '<i data-option="rock" class="icon-option fa fa-hand-rock-o" aria-hidden="true"></i>';
+                } else if (randomNumber === 1) {
+                        computerMove = 'paper';
+                        compMove +='<i data-option="paper" class="icon-option fa fa-hand-paper-o" aria-hidden="true"></i>';
+                } else if (randomNumber === 2) {
+                        computerMove = 'scissors';
+                        compMove +='<i data-option="scissors" class="icon-option fa fa-hand-scissors-o" aria-hidden="true"></i>';
+                }
+                let computerMoveData = [computerMove,compMove];
+                return computerMoveData;
+            }
+
+                // Function to reset scores
+                function resetScores() {
+                    score.wins = 0;
+                    score.losses = 0;
+                    score.ties = 0;
+                    localStorage.removeItem('savedScore');
+                    document.querySelector('.js-status').innerHTML = `Wins: ${score.wins}, Losses: ${score.losses}, Ties: ${score.ties} .`;
+                }
+            </script>
+        </section>
+        
+    </body>
+</html>
