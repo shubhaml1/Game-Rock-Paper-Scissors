@@ -1,0 +1,75 @@
+body {
+    margin: 0;
+    padding: 0;
+  }
+  .flex-container {
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+    width: 100%;
+    align-items: center;
+  }
+  .icon:hover {
+    font-size: 60px !important;
+    color: #f1c40f;
+    border-radius: 100px;
+    border: 6px solid #f1c40f;
+    cursor: pointer;
+  }
+  .icon-option {
+    font-size: 60px !important;
+    color: red;
+  }
+  .icon {
+    border-radius: 100px;
+    padding: 20px;
+    margin: 0px 0.7rem;
+    border: 6px solid rgb(28, 107, 120);
+  }
+  .heading-design {
+    font-family: "ubuntu", sans-serif;
+    font-size: 3.2rem;
+    color: rgb(28, 107, 120);
+    margin: 0.5rem 0;
+  }
+  .text-result {
+    font-family: "ubuntu", sans-serif;
+    font-size: 30px;
+    color: rgb(28, 107, 120);
+    margin: 1rem 0 0;
+  }
+  .text-result-final {
+    font-family: "ubuntu", sans-serif;
+    font-size: 30px;
+    color: white;
+    background-color: rgb(16, 156, 220);
+    margin: 0.5rem 0 1.3rem;
+    border: 10px solid rgb(16, 156, 220);
+    border-radius: 100px;
+  }
+  .text-moves-status {
+    font-family: "ubuntu", sans-serif;
+    font-weight: 700;
+    font-size: 25px;
+    color: rgb(45, 95, 100);
+    margin: 1rem 0;
+  }
+  .game1 {
+    background: rgb(211, 240, 238);
+  }
+  .reset-button {
+    color: #000;
+    border-radius: 2rem;
+    padding: 1.2rem;
+    background-color: #fff;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 1.1rem;
+    margin-bottom: 2.5rem;
+    border: 3px solid rgb(28, 107, 120);
+    &:hover {
+      border: 3px solid #f1c40f;
+    }
+  }
+  
+  
