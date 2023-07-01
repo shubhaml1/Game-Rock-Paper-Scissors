@@ -1,48 +1,79 @@
-<html>
-    <head>
-        <title>Rock Paper Scissors</title>
-        <script src="https://use.fontawesome.com/d2b46f845b.js"></script>
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Agdasima:wght@400;700&family=Montserrat:wght@744;800&family=Ubuntu&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="game.css">
-       
-    </head>
-    <body>
-        <section class="game1">
-            <div class="flex-container">
-               <h1 class="heading-design">Rock Paper Scissors</h1> 
-            </div>
-            <div class="flex-container">
-                <h2 class="js-result-final text-result-final">First 5 scorer will win.</h2>
-            </div>  
-            <div class="flex-container game-icons">
-                <button class="icon" onclick="playGame('rock');" ><i data-option="rock"  class="icon-option fa fa-hand-rock-o" aria-hidden="true"></i></button>
-                <button class="icon" onclick="playGame('paper');"><i data-option="paper" class="icon-option fa fa-hand-paper-o" aria-hidden="true"></i></button>
-                <button class="icon" onclick="playGame('scissors');"><i data-option="scissors" class="icon-option fa fa-hand-scissors-o" aria-hidden="true"></i></button>
-            </div>  
-            <div class="flex-container">
-                <h2 class="js-result text-result"></h2>
-            </div> 
-              
-            <div class="flex-container">
-                <p class="js-moves text-moves-status"></p>
-            </div>
-            <div class="flex-container">
-                <p class="js-status text-moves-status"></p>
-            </div>
-           
-            <div class="flex-container">
-                <button class="reset-button" onclick="resetScores();">Restart Game</button>
-            </div>
-            <audio class="play-game" src="sounds\sounds_zapsplat_multimedia_button_click_005_53866.mp3"></audio>
-            <audio class="win-game" src="sounds\jackaudioclipped.mp3"></audio>
-            <audio class="lose-game" src="sounds\mariolose.mp3"></audio>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width='device-width', initial-scale=1.0" />
+    <title>Rock Paper Scissors</title>
+    <script src="https://use.fontawesome.com/d2b46f845b.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Agdasima:wght@400;700&family=Montserrat:wght@744;800&family=Ubuntu&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="game.css" />
+    <style>
+        .container-moves {
+            display: flex;
+            justify-content: space-around;
+            max-width: 500px;
+            margin: 0.5rem auto;
+        }
+    </style>
+  </head>
+  <body>
+    <div class="container-1">
+      <h1 class="heading-design">Rock Paper Scissors</h1>
+    </div>
+    <div class="container-2">
+      <h2 class="js-result-final text-result-final">
+        First 5 scorer will win.
+      </h2>
+    </div>
+    <div class="container-3">
+      <button class="icon" onclick="playGame('rock');">
+        <i
+          data-option="rock"
+          class="icon-option fa fa-hand-rock-o"
+          aria-hidden="true"
+        ></i>
+      </button>
+      <button class="icon" onclick="playGame('paper');">
+        <i
+          data-option="paper"
+          class="icon-option fa fa-hand-paper-o"
+          aria-hidden="true"
+        ></i>
+      </button>
+      <button class="icon" onclick="playGame('scissors');">
+        <i
+          data-option="scissors"
+          class="icon-option fa fa-hand-scissors-o"
+          aria-hidden="true"
+        ></i>
+      </button>
+    </div>
+    <div class="container-1 winStatus">
+      <h2 class="js-result text-result"></h2>
+    </div>
+    <div class="js-moves container-moves text-moves-status">
+        <div class="js-player"></div>
+        <div class="js-computer"></div>
+    </div>
+    <!-- <p class="js-moves text-moves-status"></p>  -->
 
-        <script src="game.js"></script>
-       
-            
-        </section>
-        
-    </body>
+    <div class="container-1 js-scorecard">
+      <p class="js-status text-moves-status"></p>
+    </div>
+    <div class="container-1 play-again-button">
+      <button class="reset-button" onclick="resetScores();">play again</button>
+      <audio
+        class="play-game"
+        src="sounds\sounds_zapsplat_multimedia_button_click_005_53866.mp3"
+      ></audio>
+      <audio class="win-game" src="sounds\jackaudioclipped.mp3"></audio>
+      <audio class="lose-game" src="sounds\mariolose.mp3"></audio>
+    </div>
+    <script src="app.js"></script>
+  </body>
 </html>

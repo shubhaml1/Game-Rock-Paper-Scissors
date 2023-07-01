@@ -64,14 +64,18 @@
                gameStatusEle.innerHTML = 'You Lost Bro!! Game Over';
                // document.querySelector('.reset-button').innerHTML = 'Restart Game';
                document.querySelector('.lose-game').play();
+               // let hideEle = document.querySelector('#popup1');
+               // hideEle.classList.add('popup');  
+
            }
        } 
        else score.ties += 1;
        localStorage.setItem('savedScore', JSON.stringify(score));
        document.querySelector('.js-result').innerHTML = result;
-
        // document.querySelector('.js-moves').innerHTML = `You picked: ${playerMove} Computer picked: ${computerMove}.`;
-       document.querySelector('.js-moves').innerHTML = `You picked: ${ pMove} Computer picked: ${ compMove}`;
+       // document.querySelector('.js-moves').innerHTML = `You picked: ${pMove} Computer picked: ${compMove}.`;
+       document.querySelector('.js-player').innerHTML = `Your move: ${pMove}`;
+       document.querySelector('.js-computer').innerHTML = `Computer move: ${compMove}`;
        document.querySelector('.js-status').innerHTML = `Wins: ${score.wins}, Losses: ${score.losses}, Ties: ${score.ties} .`;
 
 
@@ -109,4 +113,13 @@ function pickComputerMove() {
        localStorage.removeItem('savedScore');
        document.querySelector('.js-status').innerHTML = `Wins: ${score.wins}, Losses: ${score.losses}, Ties: ${score.ties} .`;
        document.querySelector('.js-result-final').innerHTML = 'First 5 scorer will win.';
+       document.querySelector('.js-result').innerHTML = '';
+       // document.querySelector('.js-moves').innerHTML = '';
+       document.querySelector('.js-player').innerHTML = '';
+       document.querySelector('.js-computer').innerHTML = '';
+
+
    }
+
+// modal implementation
+
