@@ -76,7 +76,7 @@
        // document.querySelector('.js-moves').innerHTML = `You picked: ${pMove} Computer picked: ${compMove}.`;
        document.querySelector('.js-player').innerHTML = `Your move: ${pMove}`;
        document.querySelector('.js-computer').innerHTML = `Computer move: ${compMove}`;
-       document.querySelector('.js-status').innerHTML = `Wins: ${score.wins}, Losses: ${score.losses}, Ties: ${score.ties} .`;
+       document.querySelector('.js-status').innerHTML = `Wins: ${score.wins}, Losses: ${score.losses}, Ties: ${score.ties}`;
 
 
    
@@ -111,7 +111,7 @@ function pickComputerMove() {
        score.losses = 0;
        score.ties = 0;
        localStorage.removeItem('savedScore');
-       document.querySelector('.js-status').innerHTML = `Wins: ${score.wins}, Losses: ${score.losses}, Ties: ${score.ties} .`;
+       document.querySelector('.js-status').innerHTML = `Wins: ${score.wins}, Losses: ${score.losses}, Ties: ${score.ties}`;
        document.querySelector('.js-result-final').innerHTML = 'First 5 scorer will win.';
        document.querySelector('.js-result').innerHTML = '';
        // document.querySelector('.js-moves').innerHTML = '';
