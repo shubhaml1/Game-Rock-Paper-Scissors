@@ -56,15 +56,22 @@
       <p class="js-status text-moves-status"></p>
     </div>
     <div class="container-1 play-again-button">
-      <button class="reset-button" onclick="resetScores();">play again</button>
-      <audio class="play-game" src="sounds\sounds_zapsplat_multimedia_button_click_005_53866.mp3"></audio>
-      <audio class="win-game" src="sounds\jackaudioclipped.mp3"></audio>
-      <audio class="lose-game" src="sounds\mariolose.mp3"></audio>
+      <button class="reset-button" onclick="resetScores()">Play again</button>
+      <audio class="play-sound" src="sounds\sounds_zapsplat_multimedia_button_click_005_53866.mp3"></audio>
+      <audio class="winSound" src="sounds\jackaudioclipped.mp3"></audio>
+      <audio class="loseSound" src="sounds\mariolose.mp3"></audio>
     </div>
   </div>
-  <div class="show-html">
-    
+
+  <!-------------------------- modal implementation ----------------------------------->
+
+  <div class="modal" id="endgameModal">
+    <p class="modal-title" id="endgameMsg"></p>
+    <button onclick="resetScores();" class="reset-button">Play again</button>
   </div>
+  <div class="overlay" id="overlay"></div>
+  <!-- <div class="show-html">
+  </div> -->
   
   <script src="app.js"></script>
 </body>

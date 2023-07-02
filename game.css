@@ -91,9 +91,11 @@ body {
   font-weight: 700;
   font-size: 1.1rem;
   margin-bottom: 2.5rem;
-  border: 3px solid rgb(28, 107, 120);
+  border: 6px solid rgb(28, 107, 120);
   &:hover {
-    border: 3px solid #f1c40f;
+    border: 6px solid #f1c40f;
+    background-color: #f1f6f6;
+    
   }
 }
 
@@ -122,4 +124,56 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+/*-------------------------- modal related css --------------------------------------*/ 
+
+.modal {
+  position: fixed;
+  z-index: 1;
+  top: 50%;
+  left: 50%;
+  width: 300px;
+  padding: 30px;
+  border-radius: 10px;
+  background-color: rgb(211, 240, 238);
+  text-align: center;
+  font-size: 30px;
+  user-select: none;
+  transform: translate(-50%, -50%) scale(0);
+  transition: 200ms ease-in-out;
+}
+
+.modal.active {
+  transform: translate(-50%, -50%) scale(1);
+  border: 10px solid rgb(28, 107, 120);
+  border-radius: 100px;
+}
+
+.modal-title {
+  font-family: "ubuntu", sans-serif;
+  font-size: 40px;
+  font-weight: bold;
+  color:rgb(28, 107, 120);
+}
+
+.btn-restart {
+  padding: 10px 20px;
+  margin-top: 25px;
+  margin-bottom: 15px;
+}
+
+.overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  opacity: 0.6;
+}
+
+.overlay.active {
+  display: block;
 }

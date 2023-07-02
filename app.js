@@ -8,7 +8,11 @@ const score = JSON.parse(localStorage.getItem('savedScore')) ||
 
 /* Function for game */
 function playGame(playerMove) {
-    document.querySelector('.play-game').play();
+    if (score.wins >= 5 || score.losses >= 5) {
+        openEndgameModal()
+        return
+      }
+    document.querySelector('.play-sound').play();
     let pMove = '';
     let result = '';
     let computerMoveData = pickComputerMove();
@@ -48,29 +52,25 @@ function playGame(playerMove) {
     }
     let gameStatusEle = document.querySelector('.js-result-final');
 
-    // Update the score object based on the match 
-    if (result === 'Hurray!! You win!') {
-        score.wins += 1;
+        // Update the score object based on the match 
+        if (result === 'Hurray!! You win!') {
+            score.wins += 1;
 
-        if (score.wins === 5) {
-            gameStatusEle.innerHTML = 'You Win!! Game Over';
-            // document.querySelector('.reset-button').innerHTML = 'Restart Game';
-            document.querySelector('.win-game').play();
-            replay();
-            document.querySelector('.reset-button').addEventListener('click', () => {
-                document.querySelector('.hide-element').classList.remove('popup');
-            });
+            if (score.wins === 5) {
+                gameStatusEle.innerHTML = 'You Win!! Game Over';
+                // document.querySelector('.reset-button').innerHTML = 'Restart Game';
+                document.querySelector('.winSound').play();
+                // replay();
+            }
+            
         }
-        
-    }
 
     else if (result === 'You lose :(') {
         score.losses += 1;
         if (score.losses === 5) {
             gameStatusEle.innerHTML = 'You Lost Bro!! Game Over';
-            // document.querySelector('.reset-button').innerHTML = 'Restart Game';
-            document.querySelector('.lose-game').play();
-            replay();
+            document.querySelector('.loseSound').play();
+            // replay();
         }
 
     }
@@ -83,7 +83,13 @@ function playGame(playerMove) {
     document.querySelector('.js-computer').innerHTML = `Computer move: ${compMove}`;
     document.querySelector('.js-status').innerHTML = `Wins: ${score.wins}, Losses: ${score.losses}, Ties: ${score.ties}`;
 
+    if (score.wins >= 5 || score.losses >= 5) {
+        openEndgameModal()
+        setFinalMessage()
+        return
+    }
 
+    
 
     // localStorage.setItem('savedScore', 'score');
 
@@ -122,9 +128,13 @@ function resetScores() {
     // document.querySelector('.js-moves').innerHTML = '';
     document.querySelector('.js-player').innerHTML = '';
     document.querySelector('.js-computer').innerHTML = '';
+    endgameModal.classList.remove('active');
+    overlay.classList.remove('active');
 
 
 }
+
+
 //function to replay the game
 function replay() {
     const hideEle = document.querySelector('.hide-element');
@@ -135,5 +145,46 @@ function replay() {
     }   
 }
 
-// modal implementation
 
+// modal implementation
+// Modal Feature
+const endgameModal = document.getElementById('endgameModal');
+const endgameMsg = document.getElementById('endgameMsg');
+const overlay = document.getElementById('overlay');
+const winSound = document.getElementById('winSound');
+const loseSound = document.getElementById('loseSound');
+
+overlay.addEventListener('click', closeEndgameModal);
+
+function openEndgameModal() {
+    endgameModal.classList.add('active');
+    overlay.classList.add('active');
+}
+  
+function closeEndgameModal() {
+    endgameModal.classList.remove('active');
+    overlay.classList.remove('active');
+}
+
+function setFinalMessage() {
+    if(score.wins > score.losses) {
+        endgameMsg.textContent = 'You won!😼';
+        
+    }
+    else {
+        endgameMsg.textContent = 'You lost.😿';
+        
+    }
+}
+
+// ===========   display none functionality final result =========================
+
+// if(document.querySelector('.hide-element').classList.contains('popup')) {
+//         console.log("i'm inside fucn");
+//         document.querySelector('.reset-button').onclick = restoreGame(); 
+// }
+// function restore() {
+//     console.log("somebody listening");
+// document.querySelector('.hide-element').classList.remove('popup');
+// document.querySelector('.show-html').innerHTML = '';
+// };
