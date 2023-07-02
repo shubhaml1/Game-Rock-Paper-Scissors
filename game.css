@@ -113,11 +113,13 @@ body {
 
 /* ---------------------Experiment features--------------------------------- */
 
-#popup {
+.popup {
   display: none;
-  /* position: absolute;
-      background-color: #f9f9f9;
-      border: 1px solid #ccc;
-      padding: 15px;
-      z-index: 1; */
+  background-color: #f1f1f1;
+  padding: 20px;
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
